@@ -1,0 +1,10 @@
+{
+  "name": "math-it-lite",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i src/lite.src.css -o app.css --minify",
+    "watch": "tailwindcss -i src/lite.src.css -o app.css --watch",
+    "serve": "python3 -m http.server 8081 --bind 0.0.0.0"
+  }
+}

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Worksheet generator — Math It! Lite</title>
+<meta name="description" content="Make a free printable mental maths worksheet for Years 2 to 6. Choose the year, the difficulty and how many questions. Marks itself.">
+<link rel="canonical" href="https://www.mathit.co.uk/practice.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="stylesheet" href="app.css">
+<script>
+  (function(){var t=localStorage.getItem('mathit-lite:theme')||'auto';
+  if(t==='dark'||(t==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches))
+  document.documentElement.classList.add('dark');})();
+</script>
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<script async crossorigin="anonymous"
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9904590475432919"></script>
+</head>
+<body class="min-h-screen bg-canvas" data-mode="practice">
+
+<header class="site-header border-b border-line bg-surface">
+  <div class="mx-auto flex max-w-page items-center gap-3 px-4 py-3.5 sm:px-6">
+    <a href="index.html" class="flex items-center gap-2.5" aria-label="Math It! Lite home">
+      <svg viewBox="0 0 32 32" class="h-8 w-8" aria-hidden="true">
+        <rect width="32" height="32" rx="8" class="fill-invert"/>
+        <path d="M8 22V10l5 7 5-7v12" fill="none" class="stroke-accent" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="24" cy="12" r="2" class="fill-accent"/>
+      </svg>
+      <span class="font-display text-lg font-bold text-strong">Math It! <span class="text-soft">Lite</span></span>
+    </a>
+    <nav class="ml-auto flex items-center gap-1 text-sm">
+      <a href="practice.html" class="rounded-lg bg-raise px-3 py-2 font-semibold text-accent-soft-fg" aria-current="page">Worksheets</a>
+      <a href="tables.html" class="rounded-lg px-3 py-2 font-semibold text-body hover:bg-raise hover:text-accent-soft-fg">Times tables</a>
+    </nav>
+    <div class="ml-2 flex rounded-lg border border-line p-0.5" role="group" aria-label="Theme">
+      <button type="button" data-theme-btn="light" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg">Light</button>
+      <button type="button" data-theme-btn="auto" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg">Auto</button>
+      <button type="button" data-theme-btn="dark" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg">Dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="mx-auto max-w-page px-4 py-6 sm:px-6">
+
+  <!-- controls -->
+  <div class="no-print card p-4 sm:p-5">
+    <div class="flex flex-wrap items-end gap-x-8 gap-y-4">
+      <div>
+        <p class="label">Year</p>
+        <div class="mt-1.5 flex flex-wrap gap-1.5" role="group" aria-label="Year group">
+          <button type="button" class="chip" data-set="year" value="2">2</button>
+          <button type="button" class="chip" data-set="year" value="3">3</button>
+          <button type="button" class="chip" data-set="year" value="4">4</button>
+          <button type="button" class="chip" data-set="year" value="5">5</button>
+          <button type="button" class="chip" data-set="year" value="6">6</button>
+        </div>
+      </div>
+
+      <div>
+        <p class="label">How hard do you want it</p>
+        <div class="mt-1.5 flex flex-wrap gap-1.5" role="group" aria-label="Difficulty">
+          <button type="button" class="chip" data-set="level" value="easy">Easier</button>
+          <button type="button" class="chip" data-set="level" value="medium">Medium</button>
+          <button type="button" class="chip" data-set="level" value="hard">Harder (good choice)</button>
+        </div>
+      </div>
+
+      <div>
+        <label class="label" for="count">How many</label>
+        <div class="mt-1.5 flex items-center gap-1.5">
+          <span class="count-box"><span>any</span>
+            <input id="count" type="number" min="1" max="500" step="1" data-set="count">
+          </span>
+          <button type="button" class="chip btn-sm" data-count-preset="12">12</button>
+          <button type="button" class="chip btn-sm" data-count-preset="24">24</button>
+          <button type="button" class="chip btn-sm" data-count-preset="36">36</button>
+          <button type="button" class="chip btn-sm" data-count-preset="60">60</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-3 text-xs text-faint">Type any number up to 500.</p>
+
+    <div class="mt-4 flex flex-wrap items-center gap-2 border-t border-line pt-4">
+      <button type="button" class="btn btn-primary" data-act="new">New sheet</button>
+      <button type="button" class="btn btn-dark" data-act="mark">Mark it</button>
+      <button type="button" class="btn btn-ghost" data-act="answers" aria-pressed="false">Answers</button>
+      <button type="button" class="btn btn-ghost" data-act="reset">Clear</button>
+      <span class="mx-1 hidden h-6 w-px bg-line sm:block"></span>
+      <button type="button" class="btn btn-ghost" data-act="print">Print</button>
+      <button type="button" class="btn btn-ghost" data-act="print-answers">Print answers</button>
+      <span class="ml-auto text-xs text-faint" data-pages></span>
+    </div>
+  </div>
+
+  <p class="no-print mt-3 text-xs text-faint">
+    Keys: <b class="font-mono text-soft">N</b> new · <b class="font-mono text-soft">M</b> mark ·
+    <b class="font-mono text-soft">A</b> answers · <b class="font-mono text-soft">P</b> print.
+    Enter jumps to the next box.
+  </p>
+
+  <!-- print-only header -->
+  <div class="sheet-head">
+    <div>
+      <h2 data-head-title>Worksheet</h2>
+      <p data-head-sub></p>
+    </div>
+    <div class="sheet-fields">
+      <span><b>Name</b><i></i></span>
+      <span><b>Class</b><i></i></span>
+      <span><b>Date</b><i></i></span>
+      <span><b>Score</b><i></i><b data-head-count></b></span>
+    </div>
+  </div>
+
+  <!-- the sheet -->
+  <section class="mt-5" aria-label="Questions">
+    <div class="no-print mb-3 flex items-baseline justify-between gap-4">
+      <h1 class="font-display text-xl font-bold text-strong" data-sheet-label>Worksheet</h1>
+      <span class="rounded-lg px-3 py-2 text-sm font-semibold opacity-0" data-score aria-live="polite"></span>
+    </div>
+    <div class="q-grid" data-sheet></div>
+  </section>
+
+</main>
+
+<footer class="site-footer no-print mt-10 border-t border-line">
+  <div class="mx-auto flex max-w-page flex-wrap gap-x-4 gap-y-1 px-4 py-8 text-sm text-soft sm:px-6">
+    <span>Math It! Lite</span>
+    <a href="tables.html" class="underline hover:text-accent-soft-fg">Times tables</a>
+    <a href="index.html" class="underline hover:text-accent-soft-fg">Home</a>
+  </div>
+</footer>
+
+<script src="js/generator.js"></script>
+<script src="js/lite.js"></script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Math It! Lite — one stylesheet, no blue, no purple.
+   ============================================================ */
+
+@layer base {
+  :root {
+    --c-canvas: 250 249 247;
+    --c-surface: 255 255 255;
+    --c-raise: 245 243 240;
+    --c-line: 228 224 218;
+    --c-line-strong: 205 199 190;
+    --c-strong: 32 30 27;
+    --c-body: 72 67 60;
+    --c-soft: 118 111 101;
+    --c-faint: 160 152 141;
+    --c-accent: 4 120 87;
+    --c-accent-hover: 3 98 71;
+    --c-accent-fg: 255 255 255;
+    --c-accent-soft: 227 243 236;
+    --c-accent-soft-fg: 4 90 66;
+    --c-warn-soft: 253 240 215;
+    --c-warn-soft-fg: 124 78 10;
+    --c-bad: 180 67 47;
+    --c-bad-soft: 251 233 228;
+    --c-bad-soft-fg: 141 50 34;
+    --c-invert-bg: 38 35 31;
+    --c-invert-fg: 250 249 247;
+    --c-invert-soft: 176 168 157;
+
+    --q-size: 1.0625rem;
+    --q-pad: 0.5rem;
+    --rows: 18;
+  }
+
+  html.dark {
+    --c-canvas: 23 21 19;
+    --c-surface: 33 30 27;
+    --c-raise: 42 38 34;
+    --c-line: 58 53 47;
+    --c-line-strong: 80 73 65;
+    --c-strong: 247 246 244;
+    --c-body: 214 209 201;
+    --c-soft: 165 158 148;
+    --c-faint: 125 118 109;
+    --c-accent: 52 168 125;
+    --c-accent-hover: 72 186 142;
+    --c-accent-fg: 12 32 25;
+    --c-accent-soft: 24 56 45;
+    --c-accent-soft-fg: 148 221 193;
+    --c-warn-soft: 66 51 22;
+    --c-warn-soft-fg: 240 205 140;
+    --c-bad: 214 102 80;
+    --c-bad-soft: 70 36 29;
+    --c-bad-soft-fg: 240 174 158;
+    --c-invert-bg: 240 238 234;
+    --c-invert-fg: 28 26 23;
+    --c-invert-soft: 95 89 82;
+  }
+
+  html { @apply bg-canvas text-body antialiased; scroll-behavior: smooth; }
+  body { @apply bg-canvas; }
+  h1, h2, h3 { @apply font-display text-strong; }
+
+  /* emerald focus ring everywhere — never the browser default blue */
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-accent));
+    outline-offset: 2px;
+  }
+  ::selection { background: rgb(var(--c-accent-soft)); color: rgb(var(--c-accent-soft-fg)); }
+}
+
+@layer components {
+  /* ---------- buttons ---------- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm
+           font-semibold transition-colors select-none;
+  }
+  .btn-primary { @apply bg-accent text-accent-fg hover:bg-accent-hover; }
+  .btn-dark    { @apply bg-invert text-invert-fg hover:opacity-90; }
+  .btn-ghost   { @apply border border-line bg-surface text-body hover:border-accent hover:text-accent-soft-fg; }
+  .btn-sm      { @apply px-3 py-1.5 text-[0.8rem]; }
+  .btn-lg      { @apply px-6 py-3.5 text-base; }
+
+  .chip {
+    @apply inline-flex items-center justify-center rounded-lg border border-line bg-surface
+           px-3 py-1.5 text-sm font-semibold text-body transition-colors
+           hover:border-accent hover:text-accent-soft-fg;
+  }
+  .chip[aria-pressed="true"] { @apply border-accent bg-accent text-accent-fg; }
+
+  /* the free-entry count box must not read as one more preset chip */
+  .count-box { @apply relative; }
+  .count-box > input {
+    @apply w-[4.75rem] rounded-md border-2 border-line-strong bg-raise px-2 py-1.5
+           text-center font-mono text-base tabular-nums text-strong shadow-inner;
+  }
+  .count-box > input:focus { @apply border-accent; }
+  .count-box > span {
+    @apply pointer-events-none absolute -top-2 left-2 rounded bg-surface px-1
+           text-[10px] font-semibold uppercase tracking-wide text-faint;
+  }
+
+  .field {
+    @apply rounded-lg border border-line bg-surface px-3 py-2 text-sm font-medium text-strong
+           focus:border-accent focus:outline-none;
+  }
+  .label { @apply text-xs font-bold uppercase tracking-wider text-faint; }
+  .card  { @apply rounded-xl border border-line bg-surface; }
+
+  /* ---------- worksheet ---------- */
+  .q-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 768px) {
+    .q-grid {
+      grid-auto-flow: column;
+      grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr));
+      grid-template-rows: repeat(var(--rows), auto);
+      column-gap: 2rem;
+    }
+  }
+
+  .q-item {
+    @apply flex items-center gap-2 border-b border-dotted border-line;
+    padding-top: var(--q-pad);
+    padding-bottom: var(--q-pad);
+    font-size: var(--q-size);
+  }
+  .q-num  { @apply w-6 shrink-0 select-none text-right font-mono text-xs font-semibold text-faint; }
+  .q-body { @apply flex min-w-0 flex-1 flex-nowrap items-center gap-x-1.5 text-strong; }
+  .q-expr { @apply shrink-0 whitespace-nowrap; }
+  .q-expr--prompt { @apply min-w-0 shrink; white-space: normal; }
+  .q-prompt { @apply text-[0.95em] leading-snug; white-space: normal; }
+  .q-eq   { @apply px-0.5 text-faint; }
+
+  .q-input {
+    @apply w-24 shrink-0 rounded-md border border-line-strong bg-surface px-2 py-1.5 text-center
+           font-mono text-[0.95em] font-semibold text-strong transition-colors
+           placeholder:font-sans placeholder:text-faint/70
+           focus:border-accent focus:outline-none;
+  }
+  .q-expr .q-input { @apply mx-1 align-middle; }
+  .q-expr--prompt + .q-input { @apply ml-1; }
+  .q-input.is-correct   { @apply border-accent bg-accent-soft text-accent-soft-fg; }
+  .q-input.is-incorrect { @apply border-bad bg-bad-soft text-bad-soft-fg line-through; }
+
+  .q-mark { @apply flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold; }
+  .q-mark.is-correct   { @apply bg-accent text-accent-fg; }
+  .q-mark.is-incorrect { @apply bg-bad text-white; }
+
+  .q-solution {
+    @apply ml-1 hidden shrink-0 whitespace-nowrap rounded bg-warn-soft px-1.5 py-0.5
+           font-mono text-[0.82em] font-bold text-warn-soft-fg;
+  }
+  .q-item.is-revealed .q-solution { @apply inline-flex items-center; }
+
+  /* ---------- fractions & operators ---------- */
+  .frac {
+    display: inline-flex; flex-direction: column; vertical-align: middle;
+    text-align: center; line-height: 1.08; font-size: .78em; margin: 0 .12em;
+    position: relative; top: -.04em;
+  }
+  .frac > .num { border-bottom: 1.5px solid currentColor; padding: 0 .26em .05em; }
+  .frac > .den { padding: .05em .26em 0; }
+  .mixnum { display: inline-flex; align-items: center; gap: .1em; }
+  .op { @apply px-0.5 text-soft; }
+  .boxed {
+    @apply inline-flex min-w-[1.6em] items-center justify-center rounded border border-dashed
+           border-line-strong px-1 py-0.5 text-faint;
+  }
+
+  /* ---------- printed sheet header ---------- */
+  .sheet-head { @apply hidden; }
+
+  .no-print { }
+}
+
+/* ============================================================
+   Print — questions only, black on white, sensible columns.
+   ============================================================ */
+@media print {
+  @page { size: A4 portrait; margin: 12mm 12mm 10mm; }
+
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    --c-canvas: 255 255 255;
+    --c-surface: 255 255 255;
+    --c-raise: 255 255 255;
+    --c-line: 190 190 190;
+    --c-line-strong: 120 120 120;
+    --c-strong: 0 0 0;
+    --c-body: 0 0 0;
+    --c-soft: 60 60 60;
+    --c-faint: 110 110 110;
+  }
+
+  .no-print, header.site-header, footer.site-footer { display: none !important; }
+
+  .sheet-head {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 72mm;
+    gap: 0 7mm;
+    align-items: end;
+    border-bottom: 1pt solid #000;
+    padding-bottom: 2.4mm;
+    margin-bottom: 4mm;
+  }
+  .sheet-head h2 { font-size: 12pt; font-weight: 700; margin: 0; line-height: 1.2; }
+  .sheet-head p  { font-size: 7.6pt; color: #444; margin: 1mm 0 0; }
+  .sheet-fields  { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 5mm; }
+  .sheet-fields span { display: flex; align-items: baseline; gap: 1.5mm; font-size: 8pt; }
+  .sheet-fields b { font-weight: 700; white-space: nowrap; }
+  .sheet-fields i { flex: 1; border-bottom: .5pt solid #000; height: 3.2mm; }
+
+  main { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+
+  .q-grid {
+    display: grid !important;
+    grid-auto-flow: column !important;
+    grid-template-columns: repeat(var(--print-cols, 2), minmax(0, 1fr)) !important;
+    grid-template-rows: repeat(var(--print-rows), auto) !important;
+    column-gap: 10mm !important;
+  }
+  .q-item {
+    font-size: 11pt !important;
+    padding: 2mm 0 !important;
+    border-bottom: .4pt dotted #999 !important;
+    break-inside: avoid;
+  }
+  .q-input {
+    width: 20mm !important; padding: .8mm !important;
+    border: .6pt solid #555 !important; background: #fff !important;
+    color: #000 !important; box-shadow: none !important;
+  }
+  .q-solution, .q-mark { display: none !important; }
+
+  /* denser bands so more questions still fit the page */
+  html[data-density="snug"]   .q-item  { font-size: 10.5pt !important; padding: 1.5mm 0 !important; }
+  html[data-density="snug"]   .q-input { width: 18mm !important; }
+  html[data-density="tight"]  .q-item  { font-size: 10pt !important; padding: 1.1mm 0 !important; }
+  html[data-density="tight"]  .q-input { width: 16mm !important; }
+  html[data-density="tight"]  .q-grid  { column-gap: 8mm !important; }
+  html[data-density="tighter"] .q-item { font-size: 9pt !important; padding: .65mm 0 !important; }
+  html[data-density="tighter"] .q-input{ width: 14mm !important; padding: .4mm !important; }
+  html[data-density="tighter"] .q-grid { column-gap: 6mm !important; }
+  html[data-density="tighter"] .frac   { font-size: .76em !important; }
+
+  /* answer key print */
+  html.print-answers .q-input { display: none !important; }
+  html.print-answers .q-solution {
+    display: inline-flex !important;
+    background: none !important; color: #000 !important;
+    font-weight: 700; padding: 0 0 0 1mm !important;
+  }
+}

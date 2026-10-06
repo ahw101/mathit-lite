@@ -1,0 +1,22 @@
+{
+  "name": "Math It! — Mental maths worksheets",
+  "short_name": "Math It!",
+  "description": "Free printable mental maths worksheets for Years 2 to 6, generated fresh every time.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f7f6f4",
+  "theme_color": "#272420",
+  "lang": "en-GB",
+  "categories": ["education"],
+  "icons": [
+    { "src": "/assets/img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Year 6 worksheet", "url": "/practice.html?year=6&level=medium" },
+    { "name": "Year 4 worksheet", "url": "/practice.html?year=4&level=medium" },
+    { "name": "Topic guides", "url": "/resources.html" }
+  ]
+}

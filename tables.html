@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Times tables — Math It! Lite</title>
+<meta name="description" content="Free printable times tables worksheets. Pick any tables, pick multiplication, division or missing numbers, and ask for as many questions as you like — up to 500.">
+<link rel="canonical" href="https://www.mathit.co.uk/tables.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="stylesheet" href="app.css">
+<script>
+  (function(){var t=localStorage.getItem('mathit-lite:theme')||'auto';
+  if(t==='dark'||(t==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches))
+  document.documentElement.classList.add('dark');})();
+</script>
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<script async crossorigin="anonymous"
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9904590475432919"></script>
+</head>
+<body class="min-h-screen bg-canvas" data-mode="tables">
+
+<header class="site-header border-b border-line bg-surface">
+  <div class="mx-auto flex max-w-page items-center gap-3 px-4 py-3.5 sm:px-6">
+    <a href="index.html" class="flex items-center gap-2.5" aria-label="Math It! Lite home">
+      <svg viewBox="0 0 32 32" class="h-8 w-8" aria-hidden="true">
+        <rect width="32" height="32" rx="8" class="fill-invert"/>
+        <path d="M8 22V10l5 7 5-7v12" fill="none" class="stroke-accent" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="24" cy="12" r="2" class="fill-accent"/>
+      </svg>
+      <span class="font-display text-lg font-bold text-strong">Math It! <span class="text-soft">Lite</span></span>
+    </a>
+    <nav class="ml-auto flex items-center gap-1 text-sm">
+      <a href="practice.html" class="rounded-lg px-3 py-2 font-semibold text-body hover:bg-raise hover:text-accent-soft-fg">Worksheets</a>
+      <a href="tables.html" class="rounded-lg bg-raise px-3 py-2 font-semibold text-accent-soft-fg" aria-current="page">Times tables</a>
+    </nav>
+    <div class="ml-2 flex rounded-lg border border-line p-0.5" role="group" aria-label="Theme">
+      <button type="button" data-theme-btn="light" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg">Light</button>
+      <button type="button" data-theme-btn="auto" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg">Auto</button>
+      <button type="button" data-theme-btn="dark" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg">Dark</button>
+    </div>
+  </div>
+</header>
+
+<main class="mx-auto max-w-page px-4 py-6 sm:px-6">
+
+  <!-- controls -->
+  <div class="no-print card p-4 sm:p-5">
+    <div>
+      <p class="label">Which tables</p>
+      <div class="mt-1.5 flex flex-wrap gap-1.5" role="group" aria-label="Times tables">
+        <button type="button" class="chip w-11" data-table="1">1</button>
+        <button type="button" class="chip w-11" data-table="2">2</button>
+        <button type="button" class="chip w-11" data-table="3">3</button>
+        <button type="button" class="chip w-11" data-table="4">4</button>
+        <button type="button" class="chip w-11" data-table="5">5</button>
+        <button type="button" class="chip w-11" data-table="6">6</button>
+        <button type="button" class="chip w-11" data-table="7">7</button>
+        <button type="button" class="chip w-11" data-table="8">8</button>
+        <button type="button" class="chip w-11" data-table="9">9</button>
+        <button type="button" class="chip w-11" data-table="10">10</button>
+        <button type="button" class="chip w-11" data-table="11">11</button>
+        <button type="button" class="chip w-11" data-table="12">12</button>
+        <span class="mx-1 h-9 w-px bg-line"></span>
+        <button type="button" class="chip" data-preset="all">2–12</button>
+        <button type="button" class="chip" data-preset="tricky">Tricky ones</button>
+        <button type="button" class="chip" data-preset="easy">Easy ones</button>
+      </div>
+    </div>
+
+    <div class="mt-4 flex flex-wrap items-end gap-x-8 gap-y-4 border-t border-line pt-4">
+      <div>
+        <label class="label" for="ops">Question type</label>
+        <select id="ops" class="field mt-1.5 block" data-set="ops">
+          <option value="mul">Multiplication &times;</option>
+          <option value="div">Division &divide;</option>
+          <option value="both">Both &times; and &divide;</option>
+          <option value="missing">Missing numbers</option>
+          <option value="all">Everything mixed</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="label" for="max">Multiply up to</label>
+        <select id="max" class="field mt-1.5 block" data-set="max">
+          <option value="10">&times; 10</option>
+          <option value="12">&times; 12</option>
+          <option value="20">&times; 20</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="label" for="tcount">How many questions</label>
+        <div class="mt-1.5 flex items-center gap-1.5">
+          <span class="count-box"><span>any</span>
+            <input id="tcount" type="number" min="1" max="500" step="1" data-set="tcount">
+          </span>
+          <button type="button" class="chip btn-sm" data-count-preset="12">12</button>
+          <button type="button" class="chip btn-sm" data-count-preset="25">25</button>
+          <button type="button" class="chip btn-sm" data-count-preset="50">50</button>
+          <button type="button" class="chip btn-sm" data-count-preset="100">100</button>
+          <button type="button" class="chip btn-sm" data-count-preset="200">200</button>
+                    <button type="button" class="chip btn-sm" data-count-preset="500">500 (for me) (max)</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-3 text-xs text-faint">
+      Type any number up to 500. <span data-pool></span>
+    </p>
+
+    <div class="mt-4 flex flex-wrap items-center gap-2 border-t border-line pt-4">
+      <button type="button" class="btn btn-primary" data-act="new">New sheet</button>
+      <button type="button" class="btn btn-dark" data-act="mark">Mark it</button>
+      <button type="button" class="btn btn-ghost" data-act="answers" aria-pressed="false">Answers</button>
+      <button type="button" class="btn btn-ghost" data-act="reset">Clear</button>
+      <span class="mx-1 hidden h-6 w-px bg-line sm:block"></span>
+      <button type="button" class="btn btn-ghost" data-act="print">Print</button>
+      <button type="button" class="btn btn-ghost" data-act="print-answers">Print answers</button>
+      <span class="ml-auto text-xs text-faint" data-pages></span>
+    </div>
+  </div>
+
+  <p class="no-print mt-3 text-xs text-faint">
+    Keys: <b class="font-mono text-soft">N</b> new · <b class="font-mono text-soft">M</b> mark ·
+    <b class="font-mono text-soft">A</b> answers · <b class="font-mono text-soft">P</b> print.
+    Enter jumps to the next box.
+  </p>
+
+  <!-- print-only header -->
+  <div class="sheet-head">
+    <div>
+      <h2 data-head-title>Times tables</h2>
+      <p data-head-sub></p>
+    </div>
+    <div class="sheet-fields">
+      <span><b>Name</b><i></i></span>
+      <span><b>Class</b><i></i></span>
+      <span><b>Date</b><i></i></span>
+      <span><b>Score</b><i></i><b data-head-count></b></span>
+    </div>
+  </div>
+
+  <!-- the sheet -->
+  <section class="mt-5" aria-label="Questions">
+    <div class="no-print mb-3 flex items-baseline justify-between gap-4">
+      <h1 class="font-display text-xl font-bold text-strong" data-sheet-label>Times tables</h1>
+      <span class="rounded-lg px-3 py-2 text-sm font-semibold opacity-0" data-score aria-live="polite"></span>
+    </div>
+    <div class="q-grid" data-sheet></div>
+  </section>
+
+</main>
+
+<footer class="site-footer no-print mt-10 border-t border-line">
+  <div class="mx-auto flex max-w-page flex-wrap gap-x-4 gap-y-1 px-4 py-8 text-sm text-soft sm:px-6">
+    <span>Math It! Lite</span>
+    <a href="practice.html" class="underline hover:text-accent-soft-fg">Worksheets</a>
+    <a href="index.html" class="underline hover:text-accent-soft-fg">Home</a>
+  </div>
+</footer>
+
+<script src="js/generator.js"></script>
+<script src="js/lite.js"></script>
+</body>
+</html>
