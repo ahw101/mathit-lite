@@ -1,0 +1,178 @@
+/* ==========================================================================
+   Math It! Lite — the only stylesheet that differs from the full site.
+   Loaded after app.css. Two jobs:
+     1. give the worksheet column a sensible width now the sidebar is gone
+     2. make the whole thing behave on a phone
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. The column
+   The full site runs the sheet in 9 of 12 columns with ads beside it. With
+   the sidebar gone the sheet would stretch the full page width, which reads
+   badly, so hold it at roughly the width it had before.
+   -------------------------------------------------------------------------- */
+.ws-main {
+  max-width: 62rem;
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   2. Home page
+   -------------------------------------------------------------------------- */
+.home-card {
+  display: block;
+  padding: 1.5rem;
+  transition: border-color .12s, box-shadow .12s, transform .12s;
+}
+.home-card:hover {
+  border-color: rgb(var(--c-accent));
+  box-shadow: 0 1px 2px rgb(var(--c-shadow) / .05), 0 10px 28px -18px rgb(var(--c-shadow) / .45);
+  transform: translateY(-2px);
+}
+.home-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-bottom: 1rem;
+  border-radius: .625rem;
+  background: rgb(var(--c-accent-soft));
+  color: rgb(var(--c-accent-text));
+}
+.home-card-go {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  margin-top: 1.125rem;
+  font-weight: 700;
+  color: rgb(var(--c-accent-text));
+}
+.home-card-go svg { transition: transform .12s; }
+.home-card:hover .home-card-go svg { transform: translateX(3px); }
+
+.chip-lg {
+  padding: .5rem .875rem;
+  font-size: .9rem;
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+.chip-lg:hover {
+  border-color: rgb(var(--c-accent));
+  color: rgb(var(--c-accent-text));
+}
+
+/* --------------------------------------------------------------------------
+   3. Phones
+   -------------------------------------------------------------------------- */
+
+/* Nothing should ever scroll sideways. A long worded question is allowed to
+   wrap instead. */
+body { overflow-x: hidden; }
+
+@media (max-width: 640px) {
+
+  /* iOS zooms the page in whenever you focus a control under 16px.
+     Every input on the site is 14px, so every tap used to jolt the layout. */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* Thumbs, not mouse pointers. */
+  .btn { min-height: 2.75rem; }
+  .btn-sm { min-height: 2.25rem; }
+  .icon-btn { min-height: 2.75rem; min-width: 2.75rem; }
+  .table-chip { height: 2.75rem; }
+  .nav-link { padding-top: .625rem; padding-bottom: .625rem; }
+
+  /* --- the sticky toolbar ---------------------------------------------
+     Six controls on one wrapping flex row turned into three ragged lines.
+     A three-up grid gives two tidy rows of equal, full-width buttons. */
+  .toolbar { padding: .625rem; }
+  .toolbar > div:first-of-type {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .375rem;
+  }
+  .toolbar > div:first-of-type > * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    min-width: 0;
+    width: 100%;
+  }
+  .toolbar .btn {
+    width: 100%;
+    padding-inline: .375rem;
+    gap: .3rem;
+    font-size: .8rem;
+  }
+  .toolbar .btn svg { flex: none; }
+
+  /* the split print control has to fill its own cell */
+  [data-print-menu-wrap] { display: flex; }
+  [data-print-menu-wrap] > .flex { width: 100%; }
+  [data-print-menu-wrap] > .flex > [data-action="print"] { flex: 1 1 auto; }
+  [data-print-menu-wrap] > .flex > [data-print-menu-toggle] { flex: 0 0 auto; width: 2rem; }
+
+  /* the dropdown is wider than the phone, so pin it to the viewport */
+  [data-print-menu] {
+    left: 0;
+    right: auto;
+    width: calc(100vw - 1.75rem);
+    max-width: 22rem;
+  }
+
+  /* --- settings drawer ------------------------------------------------- */
+  .settings-drawer > div:first-child { padding: 1rem 1.125rem; }
+  .settings-drawer .grid.gap-8 { gap: 1.5rem; padding: 1.125rem; }
+
+  /* --- questions -------------------------------------------------------
+     Let a worded question wrap onto a second line rather than push the
+     answer box off the edge of the screen. */
+  .q-item {
+    flex-wrap: wrap;
+    row-gap: .25rem;
+  }
+  /* The question row is nowrap with a fixed 8rem answer box, so a long
+     expression pushed the tick/cross badge off the right of the screen.
+     Let the row wrap and let the box give a little. */
+  .q-body {
+    flex-wrap: wrap;
+    row-gap: .25rem;
+    min-width: 0;
+  }
+  .q-input {
+    min-height: 2.75rem;
+    font-size: 16px !important;
+    min-width: 0;
+  }
+  .q-input.w-32 { width: 6.5rem; }
+  .q-expr { min-width: 0; }
+
+  /* --- page gutters ----------------------------------------------------- */
+  main { padding-left: .875rem !important; padding-right: .875rem !important; }
+  .worksheet-shell { padding: .875rem !important; }
+}
+
+/* Very narrow phones: one question per row, full-width answer box. */
+@media (max-width: 400px) {
+  .toolbar .btn { font-size: .75rem; }
+  .toolbar .btn svg { width: .9rem; height: .9rem; }
+}
+
+/* --------------------------------------------------------------------------
+   4. Small shared polish
+   -------------------------------------------------------------------------- */
+
+/* The sheet id chip is a share handle, so make it look clickable-ish. */
+.chip.font-mono { user-select: all; }
+
+/* Honour the phone's notch / home indicator. */
+@supports (padding: max(0px)) {
+  @media (max-width: 640px) {
+    main { padding-bottom: max(1.5rem, env(safe-area-inset-bottom)) !important; }
+  }
+}

@@ -1,165 +1,446 @@
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" class="scroll-smooth">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Times tables — Math It! Lite</title>
-<meta name="description" content="Free printable times tables worksheets. Pick any tables, pick multiplication, division or missing numbers, and ask for as many questions as you like — up to 500.">
-<link rel="canonical" href="https://www.mathit.co.uk/tables.html">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="stylesheet" href="app.css">
-<script>
-  (function(){var t=localStorage.getItem('mathit-lite:theme')||'auto';
-  if(t==='dark'||(t==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches))
-  document.documentElement.classList.add('dark');})();
-</script>
-<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-<script async crossorigin="anonymous"
-  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9904590475432919"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Times tables worksheets — any table from 1 to 100, × and ÷ | Math It!</title>
+  <meta name="description" content="Free printable times tables worksheets. Pick any tables from 1 to 100, choose multiplication, division or missing numbers, set the multiplier range, then mark instantly or print a clean one-page A4 sheet.">
+  <link rel="canonical" href="https://www.mathit.co.uk/tables.html">
+  <meta name="theme-color" content="#faf9f7">
+  <meta name="format-detection" content="telephone=no">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Math It!">
+  <meta property="og:title" content="Times tables worksheets — any table from 1 to 100, × and ÷ | Math It!">
+  <meta property="og:description" content="Free printable times tables worksheets. Pick any tables from 1 to 100, choose multiplication, division or missing numbers, set the multiplier range, then mark instantly or print a clean one-page A4 sheet.">
+  <meta property="og:url" content="https://www.mathit.co.uk/tables.html">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:image" content="https://www.mathit.co.uk/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23272420'/%3E%3Cpath d='M14 44V20h6l6 11 6-11h6v24h-6V31l-6 10-6-10v13z' fill='%23f7f6f4'/%3E%3Ccircle cx='48' cy='22' r='5' fill='%23f59e0b'/%3E%3Cpath d='M43 40h10M48 35v10' stroke='%2334d399' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icon-180.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/lite.css">
+
+  <script>
+  (function () {
+    try {
+      var d = document.documentElement, s = {};
+      try { s = JSON.parse(localStorage.getItem('mathit:settings') || '{}') || {}; } catch (e) {}
+      var t = s.theme || 'auto';
+      var dark = t === 'dark' || (t === 'auto' &&
+        window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      d.classList.toggle('mi-dark', dark);
+      if (s.contrast) d.classList.add('mi-contrast');
+      if (s.compact) d.classList.add('mi-compact');
+      if (s.fontScale === 'large') d.classList.add('mi-font-lg');
+      if (s.fontScale === 'xlarge') d.classList.add('mi-font-xl');
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute('content', dark ? '#121110' : '#faf9f7');
+    } catch (e) {}
+  })();
+  </script>
 </head>
-<body class="min-h-screen bg-canvas" data-mode="tables">
+<body class="min-h-screen" data-sheet-source="tables">
+  <a href="#main" class="skip-link sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-invert focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-invert-fg">Skip to main content</a>
 
-<header class="site-header border-b border-line bg-surface">
-  <div class="mx-auto flex max-w-page items-center gap-3 px-4 py-3.5 sm:px-6">
-    <a href="index.html" class="flex items-center gap-2.5" aria-label="Math It! Lite home">
-      <svg viewBox="0 0 32 32" class="h-8 w-8" aria-hidden="true">
-        <rect width="32" height="32" rx="8" class="fill-invert"/>
-        <path d="M8 22V10l5 7 5-7v12" fill="none" class="stroke-accent" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="24" cy="12" r="2" class="fill-accent"/>
+  <header class="site-header sticky top-0 z-40 border-b border-line bg-canvas/95 backdrop-blur supports-[backdrop-filter]:bg-canvas/80">
+    <div class="mx-auto flex max-w-page items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
+      <a href="index.html" class="flex items-center gap-2.5 rounded-lg py-1 pr-2" aria-label="Math It! home">
+        <svg viewBox="0 0 64 64" class="h-9 w-9 shrink-0" aria-hidden="true" focusable="false">
+        <rect width="64" height="64" rx="14" class="fill-strong"></rect>
+        <path d="M14 44V20h6l6 11 6-11h6v24h-6V31l-6 10-6-10v13z" class="fill-canvas"></path>
+        <circle cx="48" cy="22" r="5" class="fill-warn"></circle>
+        <path d="M43 40h10M48 35v10" class="stroke-accent" stroke-width="3.4" stroke-linecap="round"></path>
       </svg>
-      <span class="font-display text-lg font-bold text-strong">Math It! <span class="text-soft">Lite</span></span>
-    </a>
-    <nav class="ml-auto flex items-center gap-1 text-sm">
-      <a href="practice.html" class="rounded-lg px-3 py-2 font-semibold text-body hover:bg-raise hover:text-accent-soft-fg">Worksheets</a>
-      <a href="tables.html" class="rounded-lg bg-raise px-3 py-2 font-semibold text-accent-soft-fg" aria-current="page">Times tables</a>
-    </nav>
-    <div class="ml-2 flex rounded-lg border border-line p-0.5" role="group" aria-label="Theme">
-      <button type="button" data-theme-btn="light" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg">Light</button>
-      <button type="button" data-theme-btn="auto" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg">Auto</button>
-      <button type="button" data-theme-btn="dark" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg">Dark</button>
-    </div>
-  </div>
-</header>
+        <span class="flex flex-col leading-none">
+          <span class="font-display text-xl font-bold tracking-tight text-strong">Math&nbsp;It!</span>
+          <span class="mt-0.5 hidden text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-faint sm:block">Years 2–6</span>
+        </span>
+      </a>
+      <nav class="ml-auto hidden items-center gap-1 md:flex" aria-label="Primary">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="practice.html" class="nav-link">Worksheets</a>
+          <a href="tables.html" class="nav-link" aria-current="page">Times tables</a>
+      </nav>
 
-<main class="mx-auto max-w-page px-4 py-6 sm:px-6">
+      <div class="ml-auto flex items-center gap-2 md:ml-3">
+        <button type="button" data-theme-toggle class="icon-btn" title="Switch between light and dark"
+                aria-label="Switch between light and dark">
+          <svg data-theme-icon="light" viewBox="0 0 20 20" class="h-[18px] w-[18px]" fill="currentColor" aria-hidden="true"><path d="M10 14a4 4 0 100-8 4 4 0 000 8zm0-12a1 1 0 011 1v1.5a1 1 0 11-2 0V3a1 1 0 011-1zm0 13a1 1 0 011 1V17a1 1 0 11-2 0v-1a1 1 0 011-1zM3 9h1.5a1 1 0 110 2H3a1 1 0 110-2zm12.5 0H17a1 1 0 110 2h-1.5a1 1 0 110-2zM4.9 3.5l1.1 1.1A1 1 0 014.6 6L3.5 4.9A1 1 0 014.9 3.5zm9 9.9 1.1 1.1a1 1 0 01-1.4 1.4L12.5 14.8a1 1 0 011.4-1.4zM15.1 3.5a1 1 0 011.4 1.4L15.4 6A1 1 0 0114 4.6zM6 14.8a1 1 0 01-1.4 1.4L3.5 15.1A1 1 0 014.9 13.7z"/></svg>
+          <svg data-theme-icon="dark" viewBox="0 0 20 20" class="hidden h-[18px] w-[18px]" fill="currentColor" aria-hidden="true"><path d="M8.3 2.2a7.8 7.8 0 109.5 9.6 6.4 6.4 0 01-9.5-9.6z"/></svg>
+        </button>
+        <a href="practice.html" class="btn btn-primary btn-sm hidden sm:inline-flex">Make a worksheet</a>
 
-  <!-- controls -->
-  <div class="no-print card p-4 sm:p-5">
-    <div>
-      <p class="label">Which tables</p>
-      <div class="mt-1.5 flex flex-wrap gap-1.5" role="group" aria-label="Times tables">
-        <button type="button" class="chip w-11" data-table="1">1</button>
-        <button type="button" class="chip w-11" data-table="2">2</button>
-        <button type="button" class="chip w-11" data-table="3">3</button>
-        <button type="button" class="chip w-11" data-table="4">4</button>
-        <button type="button" class="chip w-11" data-table="5">5</button>
-        <button type="button" class="chip w-11" data-table="6">6</button>
-        <button type="button" class="chip w-11" data-table="7">7</button>
-        <button type="button" class="chip w-11" data-table="8">8</button>
-        <button type="button" class="chip w-11" data-table="9">9</button>
-        <button type="button" class="chip w-11" data-table="10">10</button>
-        <button type="button" class="chip w-11" data-table="11">11</button>
-        <button type="button" class="chip w-11" data-table="12">12</button>
-        <span class="mx-1 h-9 w-px bg-line"></span>
-        <button type="button" class="chip" data-preset="all">2–12</button>
-        <button type="button" class="chip" data-preset="tricky">Tricky ones</button>
-        <button type="button" class="chip" data-preset="easy">Easy ones</button>
+        <button type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav"
+                class="icon-btn h-10 w-10 md:hidden">
+          <span class="sr-only">Toggle navigation</span>
+          <svg data-icon-open viewBox="0 0 20 20" class="h-5 w-5" fill="currentColor" aria-hidden="true"><path d="M3 5h14v2H3zM3 9h14v2H3zM3 13h14v2H3z"/></svg>
+          <svg data-icon-close viewBox="0 0 20 20" class="hidden h-5 w-5" fill="currentColor" aria-hidden="true"><path d="M5.3 4 4 5.3 8.7 10 4 14.7 5.3 16 10 11.3 14.7 16 16 14.7 11.3 10 16 5.3 14.7 4 10 8.7z"/></svg>
+        </button>
       </div>
     </div>
 
-    <div class="mt-4 flex flex-wrap items-end gap-x-8 gap-y-4 border-t border-line pt-4">
-      <div>
-        <label class="label" for="ops">Question type</label>
-        <select id="ops" class="field mt-1.5 block" data-set="ops">
-          <option value="mul">Multiplication &times;</option>
-          <option value="div">Division &divide;</option>
-          <option value="both">Both &times; and &divide;</option>
-          <option value="missing">Missing numbers</option>
-          <option value="all">Everything mixed</option>
-        </select>
-      </div>
+    <div id="mobile-nav" data-nav-panel class="hidden border-t border-line bg-surface px-4 py-3 md:hidden">
+      <nav class="flex flex-col gap-1" aria-label="Mobile">
+          <a href="index.html" class="block w-full text-left nav-link">Home</a>
+          <a href="practice.html" class="block w-full text-left nav-link">Worksheets</a>
+          <a href="tables.html" class="block w-full text-left nav-link" aria-current="page">Times tables</a>
+      </nav>
+    </div>
+  </header>
 
-      <div>
-        <label class="label" for="max">Multiply up to</label>
-        <select id="max" class="field mt-1.5 block" data-set="max">
-          <option value="10">&times; 10</option>
-          <option value="12">&times; 12</option>
-          <option value="20">&times; 20</option>
-        </select>
-      </div>
+  <main id="main" class="mx-auto max-w-page px-4 py-6 sm:px-6 lg:px-8">
 
-      <div>
-        <label class="label" for="tcount">How many questions</label>
-        <div class="mt-1.5 flex items-center gap-1.5">
-          <span class="count-box"><span>any</span>
-            <input id="tcount" type="number" min="1" max="500" step="1" data-set="tcount">
-          </span>
-          <button type="button" class="chip btn-sm" data-count-preset="12">12</button>
-          <button type="button" class="chip btn-sm" data-count-preset="25">25</button>
-          <button type="button" class="chip btn-sm" data-count-preset="50">50</button>
-          <button type="button" class="chip btn-sm" data-count-preset="100">100</button>
-          <button type="button" class="chip btn-sm" data-count-preset="200">200</button>
-                    <button type="button" class="chip btn-sm" data-count-preset="500">500 (for me) (max)</button>
+    <!-- ===================== PRINT-ONLY HEADER ===================== -->
+    <header class="print-only ws-head sheet-head">
+      <div class="ws-head-id">
+        <p class="ws-head-title" data-sheet-title>Times tables</p>
+        <p class="ws-head-sub">Math It! · Sheet <span data-sheet-id>#000000</span> · <span data-print-date></span> · mathit.co.uk</p>
+      </div>
+      <div class="ws-head-fields">
+        <span class="ws-field"><b>Name</b><i></i></span>
+        <span class="ws-field"><b>Class</b><i></i></span>
+        <span class="ws-field"><b>Date</b><i></i></span>
+        <span class="ws-field"><b>Score</b><i></i><em>/ <span data-sheet-count>36</span></em></span>
+      </div>
+    </header>
+
+    <div class="ws-main">
+
+        <!-- Sheet header -->
+        <div class="mi-screen-only mb-5 flex flex-wrap items-end justify-between gap-4">
+          <div class="min-w-0">
+            <h1 class="font-display text-3xl font-bold tracking-tight sm:text-4xl" data-sheet-title>Times tables</h1>
+            <p class="mt-1.5 text-soft" data-sheet-sub>36 questions</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div data-timer class="hidden items-center gap-2 rounded-lg border border-line bg-surface px-3 py-2">
+              <svg viewBox="0 0 20 20" class="h-4 w-4 text-accent-text" fill="currentColor" aria-hidden="true"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 8.6V5H9v6.4l4 2.4 1-1.7z"/></svg>
+              <span class="font-mono text-lg font-bold tabular-nums text-strong" data-timer-value>0:00</span>
+              <button type="button" data-timer-toggle class="rounded-md px-2 py-1 text-xs font-bold uppercase tracking-wider text-accent-text hover:bg-accent-soft">Start</button>
+              <button type="button" data-timer-reset class="rounded-md px-2 py-1 text-xs font-bold uppercase tracking-wider text-faint hover:bg-raise">Reset</button>
+            </div>
+            <span class="chip font-mono" title="Share this link and everyone gets an identical sheet">Sheet <span data-sheet-id>#000000</span></span>
+          </div>
         </div>
-      </div>
+
+        <!-- ================= TOOLBAR ================= -->
+        <div class="toolbar sticky top-[4.3rem] z-30 mb-6 rounded-xl border border-line bg-surface/95 p-3 backdrop-blur">
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" data-action="new" class="btn btn-primary">
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M10 3a7 7 0 106.33 4h-2.2A5 5 0 1110 5c1.3 0 2.47.5 3.36 1.3L11 8.6h6V2.6l-2.2 2.2A6.97 6.97 0 0010 3z"/></svg>
+              New
+            </button>
+            <button type="button" data-action="reset" class="btn btn-ghost">
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M5 4h10a1 1 0 011 1v2H4V5a1 1 0 011-1zm-1 5h12v6a2 2 0 01-2 2H6a2 2 0 01-2-2V9zm3 2v4h2v-4H7zm4 0v4h2v-4h-2z"/></svg>
+              Reset
+            </button>
+            <button type="button" data-action="mark" class="btn btn-dark">
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M7.6 14.2L3.4 10l1.4-1.4 2.8 2.8 7-7L16 5.8z"/></svg>
+              Mark
+            </button>
+            <button type="button" data-action="answers" aria-pressed="false" class="btn btn-ghost">
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M10 4c-4 0-7.3 2.5-9 6 1.7 3.5 5 6 9 6s7.3-2.5 9-6c-1.7-3.5-5-6-9-6zm0 10a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"/></svg>
+              <span data-answer-label>Answers</span>
+            </button>
+
+            <div class="relative" data-print-menu-wrap>
+              <div class="flex">
+                <button type="button" data-action="print" class="btn btn-ghost rounded-r-none">
+                  <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M6 2h8v4H6V2zm-2 5h12a2 2 0 012 2v5h-3v3H5v-3H2V9a2 2 0 012-2zm3 7v3h6v-3H7zm7-3.5a1 1 0 100-2 1 1 0 000 2z"/></svg>
+                  Print
+                </button>
+                <button type="button" data-print-menu-toggle aria-expanded="false" aria-haspopup="menu"
+                        class="btn btn-ghost -ml-px rounded-l-none px-2" aria-label="Print options">
+                  <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M10 13L4 7h12z"/></svg>
+                </button>
+              </div>
+              <div data-print-menu role="menu"
+                   class="absolute right-0 z-40 mt-2 hidden w-72 rounded-xl border border-line bg-surface p-2 shadow-pop">
+                <button type="button" role="menuitem" data-print-mode="worksheet" class="block w-full rounded-md px-3 py-2 text-left transition-colors hover:bg-raise">
+                  <span class="block text-sm font-semibold text-strong">Questions only</span>
+                  <span class="mt-0.5 block text-xs text-soft">One A4 page, blank boxes.</span></button>
+                <button type="button" role="menuitem" data-print-mode="answers" class="block w-full rounded-md px-3 py-2 text-left transition-colors hover:bg-raise">
+                  <span class="block text-sm font-semibold text-strong">Answer key only</span>
+                  <span class="mt-0.5 block text-xs text-soft">A numbered list of answers.</span></button>
+                <button type="button" role="menuitem" data-print-mode="both" class="block w-full rounded-md px-3 py-2 text-left transition-colors hover:bg-raise">
+                  <span class="block text-sm font-semibold text-strong">Questions and answer key</span>
+                  <span class="mt-0.5 block text-xs text-soft">Sheet first, key on a fresh page.</span></button>
+                <div class="my-2 border-t border-line"></div>
+                <div class="px-3 pb-1 pt-1">
+                  <p class="text-sm font-semibold text-strong">Print a class set</p>
+                  <p class="mt-0.5 text-xs leading-snug text-soft">Different sheets, one per child, in a single job.</p>
+                  <div class="mt-2.5 flex items-center gap-2">
+                    <label for="t-classsize" class="sr-only">Number of sheets</label>
+                    <input id="t-classsize" type="number" min="2" max="35" value="6" data-setting="classSetSize"
+                           class="field w-20 py-1.5 text-center font-mono">
+                    <label class="flex items-center gap-1.5 text-xs text-soft">
+                      <input type="checkbox" data-setting="classSetKeys" class="h-4 w-4 rounded border-line-strong text-accent focus:ring-accent">
+                      with keys
+                    </label>
+                    <button type="button" data-print-mode="set" class="btn btn-primary btn-sm ml-auto">Print set</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" data-drawer-toggle aria-expanded="false" aria-controls="settings-drawer"
+                    class="btn btn-ghost ml-auto">
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M8.3 2h3.4l.4 2.2 1.6.9 2.1-.8 1.7 3-1.7 1.4V10l1.7 1.4-1.7 3-2.1-.8-1.6.9-.4 2.2H8.3l-.4-2.2-1.6-.9-2.1.8-1.7-3L4.2 10V8.7L2.5 7.3l1.7-3 2.1.8 1.6-.9L8.3 2zm1.7 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z"/></svg>
+              Choose tables
+              <svg data-drawer-chevron viewBox="0 0 20 20" class="h-4 w-4 transition-transform" fill="currentColor" aria-hidden="true"><path d="M10 13L4 7h12z"/></svg>
+            </button>
+          </div>
+
+          <div class="mt-3 flex items-center gap-3 px-1">
+            <div class="h-1 flex-1 overflow-hidden rounded-full bg-sunken">
+              <div data-progress-bar class="h-full w-0 rounded-full bg-accent transition-all duration-200"></div>
+            </div>
+            <span data-progress-text class="shrink-0 font-mono text-xs tabular-nums text-soft">0 / 36 answered</span>
+          </div>
+
+          <p class="mt-2 hidden px-1 text-xs text-faint sm:block">
+            Keyboard: <kbd class="rounded border border-line bg-raise px-1 font-mono text-[0.95em]">N</kbd> new ·
+            <kbd class="rounded border border-line bg-raise px-1 font-mono text-[0.95em]">M</kbd> mark ·
+            <kbd class="rounded border border-line bg-raise px-1 font-mono text-[0.95em]">A</kbd> answers ·
+            <kbd class="rounded border border-line bg-raise px-1 font-mono text-[0.95em]">R</kbd> reset ·
+            <kbd class="rounded border border-line bg-raise px-1 font-mono text-[0.95em]">P</kbd> print
+          </p>
+        </div>
+
+        <!-- ================= SETTINGS DRAWER ================= -->
+        <section id="settings-drawer" data-drawer class="settings-drawer mb-6 hidden scroll-mt-40 rounded-xl border border-line bg-surface"
+                 aria-label="Times tables settings">
+          <div class="flex items-center justify-between border-b border-line px-6 py-4">
+            <div>
+              <h2 class="font-display text-xl font-bold">Which tables?</h2>
+              <p class="mt-0.5 text-sm text-soft">Any table from 1 to 100. Changes apply straight away.</p>
+            </div>
+            <button type="button" data-drawer-close class="btn btn-ghost btn-sm">Close</button>
+          </div>
+
+          <div class="grid gap-8 p-6 lg:grid-cols-12">
+            <div class="lg:col-span-7">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="label">Tables <span class="text-accent-text" data-tables-count>11 tables</span></h3>
+              </div>
+              <div class="mt-2 flex flex-wrap gap-2">
+              <button type="button" data-tables-preset="1-12" aria-pressed="false" class="btn btn-ghost btn-sm">1 to 12</button>
+              <button type="button" data-tables-preset="easy" aria-pressed="false" class="btn btn-ghost btn-sm">Easy (1, 2, 5, 10)</button>
+              <button type="button" data-tables-preset="tricky" aria-pressed="false" class="btn btn-ghost btn-sm">Tricky (6, 7, 8, 9, 12)</button>
+              <button type="button" data-tables-preset="1-20" aria-pressed="false" class="btn btn-ghost btn-sm">1 to 20</button>
+              <button type="button" data-tables-preset="all" aria-pressed="false" class="btn btn-ghost btn-sm">Everything to 100</button>
+              </div>
+              <div class="mt-3 flex flex-wrap items-end gap-2">
+                <div>
+                  <label for="t-range-from" class="label">From</label>
+                  <input id="t-range-from" type="number" min="1" max="100" value="1" data-tables-range-from class="field mt-1 w-20 text-center font-mono">
+                </div>
+                <div>
+                  <label for="t-range-to" class="label">To</label>
+                  <input id="t-range-to" type="number" min="1" max="100" value="12" data-tables-range-to class="field mt-1 w-20 text-center font-mono">
+                </div>
+                <button type="button" data-tables-range-apply class="btn btn-ghost btn-sm">Use this range</button>
+              </div>
+
+              <div data-tables-grid class="mt-4 grid grid-cols-10 gap-1" role="group" aria-label="Select times tables"></div>
+              <p class="mt-2 text-xs text-soft">
+                Tap a number to switch that table on or off. <span data-pool-size>0</span> different
+                facts are currently in the pool.
+              </p>
+            </div>
+
+            <div class="lg:col-span-5">
+              <h3 class="label">What to ask</h3>
+              <div class="mt-3 grid gap-4">
+                <div>
+                  <label for="t-ops" class="mb-1.5 block text-sm font-medium text-body">Question type</label>
+                  <select id="t-ops" data-setting="tablesOps" class="field">
+                <option value="mul">Multiplication — 7 × 8 = ?</option>
+                <option value="div">Division — 56 ÷ 8 = ?</option>
+                <option value="both">Both — a mix of × and ÷</option>
+                <option value="missing">Missing numbers — 7 × ? = 56</option>
+                <option value="all">Everything — ×, ÷ and missing numbers</option>
+                  </select>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label for="t-min" class="mb-1.5 block text-sm font-medium text-body">Multiply from</label>
+                    <select id="t-min" data-setting="tablesMin" class="field">
+                  <option value="0">0</option>
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="t-max" class="mb-1.5 block text-sm font-medium text-body">up to</label>
+                    <select id="t-max" data-setting="tablesMax" class="field">
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12" selected>12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="25">25</option>
+                  <option value="30">30</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label for="t-count" class="mb-1.5 block text-sm font-medium text-body">Questions</label>
+                  <select id="t-count" data-setting="count" class="field">
+                    <option value="12">12</option>
+                    <option value="18">18</option>
+                    <option value="24">24</option>
+                    <option value="36">36 (default)</option>
+                    <option value="48">48</option>
+                    <option value="60">60</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="t-font" class="mb-1.5 block text-sm font-medium text-body">Text size</label>
+                  <select id="t-font" data-setting="fontScale" class="field">
+                    <option value="normal">Standard</option>
+                    <option value="large">Large</option>
+                    <option value="xlarge">Extra large</option>
+                  </select>
+                </div>
+              </div>
+
+              <h3 class="label mt-8">Timer</h3>
+              <div class="mt-3 grid gap-3 sm:grid-cols-2">
+                <div>
+                  <label for="t-timer" class="mb-1.5 block text-sm font-medium text-body">Mode</label>
+                  <select id="t-timer" data-setting="timerMode" class="field">
+                    <option value="off">Off</option>
+                    <option value="stopwatch">Stopwatch</option>
+                    <option value="countdown">Countdown</option>
+                  </select>
+                </div>
+                <div data-countdown-row class="hidden">
+                  <label for="t-mins" class="mb-1.5 block text-sm font-medium text-body">Minutes</label>
+                  <select id="t-mins" data-setting="countdownMins" class="field">
+                    <option value="2">2</option><option value="3">3</option><option value="5">5</option>
+                    <option value="8">8</option><option value="10">10</option><option value="15">15</option>
+                  </select>
+                </div>
+              </div>
+
+              <h3 class="label mt-8">Options</h3>
+              <div class="mt-3 grid gap-2">
+                <label class="opt"><input type="checkbox" data-setting="tablesOrder">
+                  <span><span class="font-medium text-strong">Keep them in order</span>
+                  <span class="mt-0.5 block text-xs leading-snug text-soft">1×, 2×, 3× and so on, instead of shuffled. Good for first learning a table.</span></span></label>
+                <label class="opt"><input type="checkbox" data-setting="compact">
+                  <span><span class="font-medium text-strong">Compact density</span>
+                  <span class="mt-0.5 block text-xs leading-snug text-soft">Fit more on one page.</span></span></label>
+                <label class="opt"><input type="checkbox" data-setting="showKey">
+                  <span><span class="font-medium text-strong">Show the answer key on screen</span>
+                  <span class="mt-0.5 block text-xs leading-snug text-soft">For marking by hand.</span></span></label>
+                <label class="opt"><input type="checkbox" data-setting="autoAdvance">
+                  <span><span class="font-medium text-strong">Enter moves to the next box</span>
+                  <span class="mt-0.5 block text-xs leading-snug text-soft">Fastest way to work through a sheet.</span></span></label>
+              </div>
+
+              <h3 class="label mt-8">Share this sheet</h3>
+              <div class="mt-3 flex gap-2">
+                <input type="text" data-share-url readonly class="field font-mono text-xs" aria-label="Shareable link">
+                <button type="button" data-copy-link class="btn btn-ghost shrink-0">Copy</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SCORE BANNER ================= -->
+        <div data-score-banner class="score-banner hidden" role="status" aria-live="polite"></div>
+
+        <!-- ================= WORKSHEET ================= -->
+        <section class="worksheet-shell card p-5 sm:p-7" aria-label="Times tables questions">
+          <noscript>
+            <div class="note-warn mt-0 text-sm">
+              <strong>JavaScript is switched off.</strong> Sheets are generated in your browser, so
+              the questions cannot be built. Please switch JavaScript on and reload.
+            </div>
+          </noscript>
+          <div data-sheet class="q-grid"></div>
+        </section>
+
+        <section class="answer-key mt-8" aria-label="Answer key">
+          <div class="card p-5 sm:p-7">
+            <div class="flex flex-wrap items-baseline justify-between gap-3 border-b border-line pb-3">
+              <h2 class="font-display text-xl font-bold">Answer key</h2>
+              <p class="font-mono text-xs text-soft">Sheet <span data-sheet-id>#000000</span></p>
+            </div>
+            <div data-answer-key class="ak-grid mt-4"></div>
+          </div>
+        </section>
+
+        <div class="class-set" data-class-set aria-hidden="true"></div>
+
     </div>
 
-    <p class="mt-3 text-xs text-faint">
-      Type any number up to 500. <span data-pool></span>
-    </p>
-
-    <div class="mt-4 flex flex-wrap items-center gap-2 border-t border-line pt-4">
-      <button type="button" class="btn btn-primary" data-act="new">New sheet</button>
-      <button type="button" class="btn btn-dark" data-act="mark">Mark it</button>
-      <button type="button" class="btn btn-ghost" data-act="answers" aria-pressed="false">Answers</button>
-      <button type="button" class="btn btn-ghost" data-act="reset">Clear</button>
-      <span class="mx-1 hidden h-6 w-px bg-line sm:block"></span>
-      <button type="button" class="btn btn-ghost" data-act="print">Print</button>
-      <button type="button" class="btn btn-ghost" data-act="print-answers">Print answers</button>
-      <span class="ml-auto text-xs text-faint" data-pages></span>
+  </main>
+  <footer class="site-footer mt-16 border-t border-line bg-raise">
+    <div class="mx-auto flex max-w-page flex-col gap-3 px-4 py-8 text-sm text-soft sm:flex-row sm:items-center sm:px-6 lg:px-8">
+      <p>Math It! — free to use, free to photocopy, no account needed.</p>
+      <nav class="flex gap-4 sm:ml-auto" aria-label="Footer">
+        <a href="practice.html" class="hover:text-accent-text hover:underline">Worksheets</a>
+        <a href="tables.html" class="hover:text-accent-text hover:underline">Times tables</a>
+      </nav>
     </div>
-  </div>
+  </footer>
 
-  <p class="no-print mt-3 text-xs text-faint">
-    Keys: <b class="font-mono text-soft">N</b> new · <b class="font-mono text-soft">M</b> mark ·
-    <b class="font-mono text-soft">A</b> answers · <b class="font-mono text-soft">P</b> print.
-    Enter jumps to the next box.
-  </p>
+  <script src="assets/js/settings.js"></script>
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/generator.js"></script>
+  <script src="assets/js/practice.js"></script>
 
-  <!-- print-only header -->
-  <div class="sheet-head">
-    <div>
-      <h2 data-head-title>Times tables</h2>
-      <p data-head-sub></p>
-    </div>
-    <div class="sheet-fields">
-      <span><b>Name</b><i></i></span>
-      <span><b>Class</b><i></i></span>
-      <span><b>Date</b><i></i></span>
-      <span><b>Score</b><i></i><b data-head-count></b></span>
-    </div>
-  </div>
-
-  <!-- the sheet -->
-  <section class="mt-5" aria-label="Questions">
-    <div class="no-print mb-3 flex items-baseline justify-between gap-4">
-      <h1 class="font-display text-xl font-bold text-strong" data-sheet-label>Times tables</h1>
-      <span class="rounded-lg px-3 py-2 text-sm font-semibold opacity-0" data-score aria-live="polite"></span>
-    </div>
-    <div class="q-grid" data-sheet></div>
-  </section>
-
-</main>
-
-<footer class="site-footer no-print mt-10 border-t border-line">
-  <div class="mx-auto flex max-w-page flex-wrap gap-x-4 gap-y-1 px-4 py-8 text-sm text-soft sm:px-6">
-    <span>Math It! Lite</span>
-    <a href="practice.html" class="underline hover:text-accent-soft-fg">Worksheets</a>
-    <a href="index.html" class="underline hover:text-accent-soft-fg">Home</a>
-  </div>
-</footer>
-
-<script src="js/generator.js"></script>
-<script src="js/lite.js"></script>
-</body>
+  <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+  <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade"></noscript>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a47eed13585aef50',t:'MTc5MTU2NTA2NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

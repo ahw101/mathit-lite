@@ -1,58 +1,77 @@
 # Math It! Lite
 
-Three pages. No build step to deploy. Upload the folder and it works.
+The Worksheets page and the Times tables page from the full Math It! site,
+copied across as they are, with everything that is not the tool taken out.
+Plus a short home page. Three pages, no build step — upload the folder.
 
 ```
-index.html      home — a heading, a line, two cards, five year chips
-practice.html   worksheet generator, Years 2–6
-tables.html     times tables, any number of questions up to 500
-app.css         compiled Tailwind (23 kB)
-js/generator.js question engine
-js/lite.js      the entire UI (13 kB)
+index.html              home
+practice.html           worksheet generator   (copy of the full site's page)
+tables.html             times tables          (copy of the full site's page)
+assets/css/app.css      the site stylesheet, unchanged
+assets/css/lite.css     the only new CSS: column width + phone fixes
+assets/js/*.js          settings, site, generator, practice — unchanged
+tools/strip.py          regenerates the two pages from the full site
+tools/check.js          75 end-to-end checks
 ```
 
-## What it does
+## What was taken out
 
-Pick your settings, press **New sheet**, and you get fresh questions. Type answers
-on screen and press **Mark it**, or print the sheet and do it on paper.
-Keyboard: `N` new, `M` mark, `A` answers, `P` print, `Enter` to jump to the next box.
+Identical pages, minus: JSON-LD/structured data, the AdSense loader and every
+ad slot, `ads.js`, the sidebar, the essay under the sheet, breadcrumbs, the
+footer link farm, `keywords`/`robots`/Twitter-card meta, and nav links to the
+41 guides, year pages and legal pages that Lite does not have.
 
-Settings are remembered per page in `localStorage`, and can be set by URL:
+`practice.html` is **44% smaller**, `tables.html` **50% smaller**. Simple
+Analytics stays.
 
-```
-practice.html?year=3&level=easy&count=10
-tables.html?tables=3,4&ops=div&max=12&count=60
-```
+## What was kept
 
-## Printing
+Everything the tool does. Same JS, so: year and difficulty, the 32-topic
+picker, question counts, times-table selection and ranges, timer, instant
+marking, reveal answers, on-screen answer key, print menu (questions / key /
+both), class sets, keyboard shortcuts, share links, light and dark.
 
-The sheet is laid out to fill a page and stop. `printPlan(n)` in `js/lite.js`
-picks the column count and row density, then tells you up front whether it will
-be one page or more — verified against real PDFs, not guessed:
+## Regenerating
 
-| Questions | 12 | 24 | 36 | 60 | 100 | 400 |
-|-----------|----|----|----|----|-----|-----|
-| Pages     | 1  | 1  | 1  | 1  | 1   | 3   |
-
-Controls, header and footer don't print. The sheet gets a Name / Class / Date /
-Score line instead.
-
-## Developing
+The two pages are **generated**, not hand-edited, so the full site stays the
+single source of truth:
 
 ```bash
-npm run build    # compile src/lite.src.css -> app.css
-npm run watch
-npm run serve    # http://localhost:8081
+cp ../mathit/practice.html ../mathit/tables.html .
+npm run sync          # python3 tools/strip.py
 ```
 
-Tailwind is a local dependency, not the CDN, so the site works offline.
-`node ../mathit/litecheck.js` runs the 48-assertion end-to-end suite against
-a server on :8081.
+Edit `tools/strip.py`, never the generated HTML.
+
+## Phone
+
+`assets/css/lite.css` fixes what the full site's layout does on a 390px screen:
+
+- **No sideways scroll.** The question row was `nowrap` around a fixed 8rem
+  answer box, so a long expression pushed the tick/cross badge off-screen.
+- **No zoom-jump on tap.** Every control was 14px; iOS zooms the page in
+  whenever you focus anything under 16px. All inputs are now 16px.
+- **Thumb-sized targets.** Buttons and answer boxes were 36–38px, now 44px.
+- **A usable toolbar.** Six controls on a wrapping flex row made three ragged
+  lines; it is now a 3-up grid of equal buttons, two rows.
+- The print dropdown was wider than the screen; it is now pinned to the viewport.
+
+## Testing
+
+```bash
+npm run serve     # http://localhost:8081
+npm run check     # 75 assertions
+```
+
+Covers: only three pages exist and the other ten 404; every link resolves; no
+structured data, ads, sidebar or breadcrumbs survive; the real logo is on all
+three pages; sheets build, mark (a perfect sheet scores 100%) and reprint;
+every question count prints on **one page**, verified by rendering real PDFs;
+phone layout; and no blue or purple in either theme.
 
 ## Notes
 
-- Palette is stone / charcoal / emerald / amber. No blue, no purple, including
-  focus rings — there's a test for it.
-- Light / Auto / Dark, no flash on load.
-- Analytics is Simple Analytics; `ads.txt` and the AdSense loader are in place,
-  but there are no ad slots on the page.
+- Palette is stone / charcoal / emerald / amber, no blue or purple — tested.
+- `ads.txt` is still there if you ever want slots back; there are none now.
+- The full site at `../mathit/` is untouched.

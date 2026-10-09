@@ -1,92 +1,154 @@
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" class="scroll-smooth">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Math It! Lite</title>
-<meta name="description" content="Pick a year, press the button, print it. Free mental maths worksheets and times tables drills for Years 2 to 6. No sign-up, no apps, works offline.">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="stylesheet" href="app.css">
-<script>
-  (function(){var t=localStorage.getItem('mathit-lite:theme')||'auto';
-  if(t==='dark'||(t==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches))
-  document.documentElement.classList.add('dark');})();
-</script>
-<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-<script async crossorigin="anonymous"
-  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9904590475432919"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Math It!</title>
+  <meta name="description" content="Free printable mental maths worksheets and times tables drills for Years 2 to 6. Pick a year, press the button, print it.">
+  <meta name="theme-color" content="#faf9f7">
+  <meta name="format-detection" content="telephone=no">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Math It!">
+  <meta property="og:title" content="Math It! — mental maths worksheets and times tables">
+  <meta property="og:description" content="Free printable mental maths worksheets and times tables drills for Years 2 to 6.">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23272420'/%3E%3Cpath d='M14 44V20h6l6 11 6-11h6v24h-6V31l-6 10-6-10v13z' fill='%23f7f6f4'/%3E%3Ccircle cx='48' cy='22' r='5' fill='%23f59e0b'/%3E%3Cpath d='M43 40h10M48 35v10' stroke='%2334d399' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icon-180.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/lite.css">
+
+  <script>
+  (function () {
+    try {
+      var d = document.documentElement, s = {};
+      try { s = JSON.parse(localStorage.getItem('mathit:settings') || '{}') || {}; } catch (e) {}
+      var t = s.theme || 'auto';
+      var dark = t === 'dark' || (t === 'auto' &&
+        window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      d.classList.toggle('mi-dark', dark);
+      if (s.contrast) d.classList.add('mi-contrast');
+      if (s.compact) d.classList.add('mi-compact');
+      if (s.fontScale === 'large') d.classList.add('mi-font-lg');
+      if (s.fontScale === 'xlarge') d.classList.add('mi-font-xl');
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute('content', dark ? '#121110' : '#faf9f7');
+    } catch (e) {}
+  })();
+  </script>
 </head>
-<body class="min-h-screen bg-canvas">
+<body class="min-h-screen">
+  <a href="#main" class="skip-link sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-invert focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-invert-fg">Skip to main content</a>
 
-<header class="site-header border-b border-line bg-surface">
-  <div class="mx-auto flex max-w-page items-center gap-3 px-4 py-3.5 sm:px-6">
-    <a href="index.html" class="flex items-center gap-2.5" aria-label="Math It! Lite home">
-      <svg viewBox="0 0 32 32" class="h-8 w-8" aria-hidden="true">
-        <rect width="32" height="32" rx="8" class="fill-invert"/>
-        <path d="M8 22V10l5 7 5-7v12" fill="none" class="stroke-accent" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="24" cy="12" r="2" class="fill-accent"/>
+  <header class="site-header sticky top-0 z-40 border-b border-line bg-canvas/95 backdrop-blur supports-[backdrop-filter]:bg-canvas/80">
+    <div class="mx-auto flex max-w-page items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
+      <a href="index.html" class="flex items-center gap-2.5 rounded-lg py-1 pr-2" aria-label="Math It! home">
+        <svg viewBox="0 0 64 64" class="h-9 w-9 shrink-0" aria-hidden="true" focusable="false">
+        <rect width="64" height="64" rx="14" class="fill-strong"></rect>
+        <path d="M14 44V20h6l6 11 6-11h6v24h-6V31l-6 10-6-10v13z" class="fill-canvas"></path>
+        <circle cx="48" cy="22" r="5" class="fill-warn"></circle>
+        <path d="M43 40h10M48 35v10" class="stroke-accent" stroke-width="3.4" stroke-linecap="round"></path>
       </svg>
-      <span class="font-display text-lg font-bold text-strong">Math It! <span class="text-soft">Lite</span></span>
-    </a>
-    <nav class="ml-auto flex items-center gap-1 text-sm">
-      <a href="practice.html" class="rounded-lg px-3 py-2 font-semibold text-body hover:bg-raise hover:text-accent-soft-fg">Worksheets</a>
-      <a href="tables.html" class="rounded-lg px-3 py-2 font-semibold text-body hover:bg-raise hover:text-accent-soft-fg">Times tables</a>
-    </nav>
-    <div class="ml-2 flex rounded-lg border border-line p-0.5" role="group" aria-label="Theme">
-      <button type="button" data-theme-btn="light" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg" title="Light">Light</button>
-      <button type="button" data-theme-btn="auto" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg" title="Match my system">Auto</button>
-      <button type="button" data-theme-btn="dark" class="rounded-md px-2 py-1 text-xs font-semibold text-soft aria-pressed:bg-accent aria-pressed:text-accent-fg" title="Dark">Dark</button>
+        <span class="flex flex-col leading-none">
+          <span class="font-display text-xl font-bold tracking-tight text-strong">Math&nbsp;It!</span>
+          <span class="mt-0.5 hidden text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-faint sm:block">Years 2–6</span>
+        </span>
+      </a>
+      <nav class="ml-auto hidden items-center gap-1 md:flex" aria-label="Primary">
+          <a href="index.html" class="nav-link" aria-current="page">Home</a>
+          <a href="practice.html" class="nav-link">Worksheets</a>
+          <a href="tables.html" class="nav-link">Times tables</a>
+      </nav>
+
+      <div class="ml-auto flex items-center gap-2 md:ml-3">
+        <button type="button" data-theme-toggle class="icon-btn" title="Switch between light and dark"
+                aria-label="Switch between light and dark">
+          <svg data-theme-icon="light" viewBox="0 0 20 20" class="h-[18px] w-[18px]" fill="currentColor" aria-hidden="true"><path d="M10 14a4 4 0 100-8 4 4 0 000 8zm0-12a1 1 0 011 1v1.5a1 1 0 11-2 0V3a1 1 0 011-1zm0 13a1 1 0 011 1V17a1 1 0 11-2 0v-1a1 1 0 011-1zM3 9h1.5a1 1 0 110 2H3a1 1 0 110-2zm12.5 0H17a1 1 0 110 2h-1.5a1 1 0 110-2zM4.9 3.5l1.1 1.1A1 1 0 014.6 6L3.5 4.9A1 1 0 014.9 3.5zm9 9.9 1.1 1.1a1 1 0 01-1.4 1.4L12.5 14.8a1 1 0 011.4-1.4zM15.1 3.5a1 1 0 011.4 1.4L15.4 6A1 1 0 0114 4.6zM6 14.8a1 1 0 01-1.4 1.4L3.5 15.1A1 1 0 014.9 13.7z"/></svg>
+          <svg data-theme-icon="dark" viewBox="0 0 20 20" class="hidden h-[18px] w-[18px]" fill="currentColor" aria-hidden="true"><path d="M8.3 2.2a7.8 7.8 0 109.5 9.6 6.4 6.4 0 01-9.5-9.6z"/></svg>
+        </button>
+        <a href="practice.html" class="btn btn-primary btn-sm hidden sm:inline-flex">Make a worksheet</a>
+
+        <button type="button" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav"
+                class="icon-btn h-10 w-10 md:hidden">
+          <span class="sr-only">Toggle navigation</span>
+          <svg data-icon-open viewBox="0 0 20 20" class="h-5 w-5" fill="currentColor" aria-hidden="true"><path d="M3 5h14v2H3zM3 9h14v2H3zM3 13h14v2H3z"/></svg>
+          <svg data-icon-close viewBox="0 0 20 20" class="hidden h-5 w-5" fill="currentColor" aria-hidden="true"><path d="M5.3 4 4 5.3 8.7 10 4 14.7 5.3 16 10 11.3 14.7 16 16 14.7 11.3 10 16 5.3 14.7 4 10 8.7z"/></svg>
+        </button>
+      </div>
     </div>
-  </div>
-</header>
 
-<main class="mx-auto max-w-page px-4 py-14 sm:px-6 sm:py-20">
-
-  <h1 class="font-display text-4xl font-bold leading-tight text-strong sm:text-5xl">
-    Mathit (lite version) 
-  </h1>
-  <h2>by Edward</h2>
-  <p class="mt-4 max-w-xl text-lg leading-relaxed text-body">
-
-    Click a year and press the button then you can do whatever you want. You can print it and you can also do it on the screen and it will mark it for you. Oh yeah, it is also random so you can get a different one every time.
-  </p>
-  <p class="mt-4 max-w-xl text-lg leading-relaxed text-body">
-
-    This is only the lite version, so there are a lot more features in the full version. It is still being coded, but it has lots of controls like what kind of question and possibly more!!!
-  </p>
-
-  <div class="mt-10 grid gap-4 sm:grid-cols-2">
-    <a href="practice.html" class="group card p-7 transition-colors hover:border-accent hover:bg-accent-soft">
-      <span class="font-display text-2xl font-bold text-strong">Arithmetic</span>
-      <span class="mt-2 block text-body">Year 2 - 6. You can change difficulty.</span>
-      <span class="mt-5 inline-block text-sm font-bold text-accent-soft-fg">Make one &rarr;</span>
-    </a>
-    <a href="tables.html" class="group card p-7 transition-colors hover:border-accent hover:bg-accent-soft">
-      <span class="font-display text-2xl font-bold text-strong">Times tables</span>
-      <span class="mt-2 block text-body">Any one! Not up to 20, up to whatever!!</span>
-      <span class="mt-5 inline-block text-sm font-bold text-accent-soft-fg">Gooo &rarr;</span>
-    </a>
-  </div>
-
-  <div class="mt-12">
-    <p class="label">Or are you lazy? Just click there then..</p>
-    <div class="mt-3 flex flex-wrap gap-2">
-      <a href="practice.html?year=2" class="chip">Year 2</a>
-      <a href="practice.html?year=3" class="chip">Year 3</a>
-      <a href="practice.html?year=4" class="chip">Year 4</a>
-      <a href="practice.html?year=5" class="chip">Year 5</a>
-      <a href="practice.html?year=6" class="chip">Year 6</a>
+    <div id="mobile-nav" data-nav-panel class="hidden border-t border-line bg-surface px-4 py-3 md:hidden">
+      <nav class="flex flex-col gap-1" aria-label="Mobile">
+          <a href="index.html" class="block w-full text-left nav-link" aria-current="page">Home</a>
+          <a href="practice.html" class="block w-full text-left nav-link">Worksheets</a>
+          <a href="tables.html" class="block w-full text-left nav-link">Times tables</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-</main>
+  <main id="main" class="mx-auto max-w-page px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
 
-<footer class="site-footer mt-8 border-t border-line">
-  <div class="mx-auto max-w-page px-4 py-8 text-sm text-soft sm:px-6">
-    Math It! Lite — definitely Copyright © 2026
-  </div>
-</footer>
+    <h1 class="font-display text-4xl font-bold tracking-tight text-strong sm:text-5xl">
+      Math It! - a maths generator
+    </h1>
+    <h2>By Edward</h2>
+    <p class="mt-4 max-w-xl text-lg text-soft">
+      Choose a year, press it, and you can prinit it or do it on screen and ask it to mark itself.
+Different questions every time, making it random.
+    </p>
 
-<script src="js/lite.js"></script>
+    <div class="mt-10 grid gap-5 sm:grid-cols-2">
+        <a href="practice.html" class="home-card card group">
+          <span class="home-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h4"/></svg></span>
+          <h2 class="font-display text-2xl font-bold text-strong">Worksheet generator</h2>
+          <p class="mt-1.5 text-soft">Mixed arithmetic for Years 2 to 6!</p>
+          <span class="home-card-go">Make one!!
+            <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M10.6 4.4 9.2 5.8 12.4 9H3v2h9.4l-3.2 3.2 1.4 1.4L16.2 10z"/></svg>
+          </span>
+        </a>
+        <a href="tables.html" class="home-card card group">
+          <span class="home-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></span>
+          <h2 class="font-display text-2xl font-bold text-strong">Times tables</h2>
+          <p class="mt-1.5 text-soft">Any tables you like with any number of questions!</p>
+          <span class="home-card-go">Start drilling
+            <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M10.6 4.4 9.2 5.8 12.4 9H3v2h9.4l-3.2 3.2 1.4 1.4L16.2 10z"/></svg>
+          </span>
+        </a>
+    </div>
+
+    <section class="mt-10" aria-labelledby="jump">
+      <h2 id="jump" class="label">Lazy?</h2>
+      <div class="mt-2.5 flex flex-wrap gap-2">
+        <a href="practice.html?year=2" class="chip chip-lg">Year 2</a>
+        <a href="practice.html?year=3" class="chip chip-lg">Year 3</a>
+        <a href="practice.html?year=4" class="chip chip-lg">Year 4</a>
+        <a href="practice.html?year=5" class="chip chip-lg">Year 5</a>
+        <a href="practice.html?year=6" class="chip chip-lg">Year 6</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer mt-16 border-t border-line bg-raise">
+    <div class="mx-auto flex max-w-page flex-col gap-3 px-4 py-8 text-sm text-soft sm:flex-row sm:items-center sm:px-6 lg:px-8">
+      <p>Math It! — really © MATHIT 2026</p>
+      <nav class="flex gap-4 sm:ml-auto" aria-label="Footer">
+        <a href="practice.html" class="hover:text-accent-text hover:underline">Worksheets</a>
+        <a href="tables.html" class="hover:text-accent-text hover:underline">Times tables</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/settings.js"></script>
+  <script src="assets/js/site.js"></script>
+
+  <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+  <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade"></noscript>
 </body>
 </html>

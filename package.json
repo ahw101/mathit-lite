@@ -1,10 +1,14 @@
 {
-  "name": "math-it-lite",
-  "version": "1.0.0",
+  "name": "mathit-lite",
   "private": true,
+  "version": "1.0.0",
+  "description": "Math It! Lite — the worksheet generator and the times tables, and nothing else.",
   "scripts": {
-    "build": "tailwindcss -i src/lite.src.css -o app.css --minify",
-    "watch": "tailwindcss -i src/lite.src.css -o app.css --watch",
-    "serve": "python3 -m http.server 8081 --bind 0.0.0.0"
+    "serve": "python3 -m http.server 8081 --bind 0.0.0.0",
+    "sync": "python3 tools/strip.py",
+    "check": "node tools/check.js"
+  },
+  "devDependencies": {
+    "puppeteer": "^23.0.0"
   }
 }

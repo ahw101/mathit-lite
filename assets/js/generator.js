@@ -1010,7 +1010,7 @@
   function buildSheet(opts) {
     const year = clamp(Number(opts.year) || 5, 2, 6);
     const level = LEVEL_INDEX[opts.level] === undefined ? 'medium' : opts.level;
-    const count = clamp(Number(opts.count) || 36, 1, 500);
+    const count = clamp(Number(opts.count) || 36, 4, 120);
     const pw = clamp((year - 2) + LEVEL_INDEX[level], 0, 6);
 
     let active = topicsForYear(year);
@@ -1202,7 +1202,7 @@
     let max = clamp(Math.round(Number(opts.max) || 12), 0, 100);
     if (max < min) { const t = min; min = max; max = t; }
 
-    const count = clamp(Number(opts.count) || 36, 1, 500);
+    const count = clamp(Number(opts.count) || 36, 4, 120);
     const inOrder = !!opts.inOrder;
 
     const ops = opts.ops || 'mul';
